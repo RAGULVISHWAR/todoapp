@@ -4,7 +4,7 @@ import { Task } from "../type/Task";
 interface Tasks{
     tasks:Task[],
     addTask:(task:string)=>void,
-    removeTask:(id:number)=>void
+    removeTask:(id:number)=>void,
 }
 export const Taskcontext =createContext<Tasks|undefined>(undefined); 
 

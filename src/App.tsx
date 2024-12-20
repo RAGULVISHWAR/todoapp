@@ -1,4 +1,5 @@
 import Createtask from "./components/Createtask"
+import Showtask from "./components/Showtask";
 import { useTaskcontext } from "./context/Taskcontext";
 
 
@@ -7,9 +8,7 @@ function App() {
   return (
     <>
      <Createtask />
-     {tasks.map((task)=>{
-      return(<p>{task.name}</p>)
-     })}
+     <Showtask/>
     </>
   )
 }
