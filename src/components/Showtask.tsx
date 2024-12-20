@@ -1,35 +1,33 @@
-import { Accordion, AccordionActions, AccordionDetails, AccordionSummary, Button, Switch } from "@mui/material";
+import { Accordion, AccordionActions, AccordionDetails, AccordionSummary, Button, Switch, Typography } from "@mui/material";
 import { useTaskcontext } from "../context/Taskcontext";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const Showtask = () => {
-    const{tasks}=useTaskcontext();
-    function handleChange(id:number)
-    {
-
-    }
+    const{tasks,editComplete,removeTask}=useTaskcontext();
+   
   return (
-    <div style={{display:"flex"}}>
+    <div>
        <div>
         {tasks.map((task)=>
-         <Accordion defaultExpanded>
+         <Accordion >
          <AccordionSummary
            expandIcon={<ExpandMoreIcon />}
            aria-controls="panel3-content"
            id="panel3-header"
          >
-           Task
+           <Typography  variant="h5">Task</Typography>
          </AccordionSummary>
          <AccordionDetails>
            {task.name}
          </AccordionDetails>
          <AccordionActions>
-           <Button>Cancel</Button>
+         
+           <Button disabled={!task.complete} variant="contained" onClick={()=>removeTask(task.id)}>Remove Task</Button>
            <Switch
               checked={task.complete}
-              onChange={()=>handleChange(task.id)}
+              onChange={()=> editComplete(task.id)}
               inputProps={{ 'aria-label': 'controlled' }}
-           />
+           /><span>{!task.complete?<p>not completed</p>:<p>completed</p>}</span>
          </AccordionActions>
        </Accordion>
         )}
